@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>History & Culture</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<button id="menu-button" class="menu-btn">
+☰
+</button>
+
+<div class="menu">
+
+    <h1>
+    HISTORY<br>
+    &amp; CULTURE
+    </h1>
+
+    <button id="close-menu" class="close-menu">
+        ✕
+    </button>
+
+    <div class="menu-line"></div>
+
+    <div class="menu-content">
+
+        <div id="menu-pages"></div>
+
+    </div>
+
+    <div class="menu-footer">
+
+        <div class="issue">
+            ISSUE №01 • 2026
+        </div>
+
+        <div class="menu-nav">
+        </div>
+
+    </div>
+
+</div>
+
+<div class="zoom-panel">
+
+    <span class="zoom-icon">
+        🔍
+    </span>
+
+    <span id="zoom-value">
+        100%
+    </span>
+
+    <button id="zoom-out">
+        −
+    </button>
+
+    <button id="zoom-in">
+        +
+    </button>
+
+    <button id="zoom-reset">
+        ↺
+    </button>
+
+</div>
+
+<div class="text-panel">
+
+    <button id="text-smaller">
+        A−
+    </button>
+
+    <span id="text-size">
+        18
+    </span>
+
+    <button id="text-larger">
+        A+
+    </button>
+
+    <input
+        type="color"
+        id="text-color"
+        value="#111111"
+    >
+
+</div>
+
+<div class="bottom-bar">
+
+    <button id="bottom-prev" class="bottom-arrow">
+        ❮
+    </button>
+
+    <button id="bottom-next" class="bottom-arrow">
+        ❯
+    </button>
+
+</div>
+
+<div class="viewer">
+
+    <div id="book"></div>
+
+</div>
+
+
+<button id="next">
+    ❯
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

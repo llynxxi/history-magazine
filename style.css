@@ -1,0 +1,1084 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+
+    font-family:"Times New Roman", serif;
+
+    background-image:url("images/tablee.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    color:white;
+
+    overflow:hidden;
+
+}
+
+
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.35);
+
+    z-index:-1;
+
+}
+
+
+
+/* ================= MENU BUTTON ================= */
+
+
+.menu-btn{
+
+    position:fixed;
+
+    top:35px;
+    left:35px;
+
+    width:55px;
+    height:55px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    font-size:30px;
+    line-height:1;
+
+    cursor:pointer;
+
+    z-index:500;
+
+    transition:.2s;
+
+}
+
+.menu-btn:hover{
+
+    background:rgba(255,255,255,.22);
+
+}
+
+
+
+
+
+/* ================= MENU ================= */
+
+
+.menu{
+
+    position:fixed;
+
+    top:0;
+
+    left:-360px;
+
+    width:360px;
+
+    height:100vh;
+
+    background:
+
+    linear-gradient(
+    180deg,
+    rgba(15,16,20,.98),
+    rgba(5,5,7,.98)
+    );
+
+    padding:120px 38px 30px 38px;
+
+    z-index:400;
+
+    transition:.4s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+}
+
+
+
+.menu.active{
+
+    left:0;
+
+}
+
+
+
+.menu h1{
+
+    margin-top:20px;
+
+    font-size:34px;
+
+    line-height:1.05;
+
+}
+
+
+
+.subtitle{
+
+    margin-top:25px;
+
+    font-size:17px;
+
+    opacity:.8;
+
+}
+
+
+
+.menu-line{
+
+    height:1px;
+
+    width:100%;
+
+    background:rgba(255,255,255,.35);
+
+    margin:40px 0;
+
+}
+.menu-content{
+
+    flex:1;
+
+    min-height:0;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding-right:12px;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:rgba(255,255,255,.35) transparent;
+
+}
+.menu-footer{
+
+    border-top:1px solid rgba(255,255,255,.25);
+
+    padding-top:20px;
+
+    margin-top:20px;
+
+}
+.menu-nav{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+}
+.menu-nav button{
+
+    flex:1;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+    font-family:"Times New Roman",serif;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+.menu-nav button:hover{
+
+    background:rgba(255,255,255,.22);
+
+}
+
+
+#menu-pages{
+    height:500px;
+    overflow-y:scroll;
+    padding-right:10px;
+}
+
+#menu-pages p{
+
+    font-size:19px;
+
+    line-height:1.2;
+
+    margin:14px 0;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+
+/* ================= VIEWER ================= */
+
+
+.viewer{
+
+    width:100vw;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+.camera {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: center center;
+}
+
+
+/* ================= CAMERA ================= */
+
+
+.camera{
+
+    width:1080px;
+
+    height:720px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transform-origin:center center;
+
+}
+
+
+
+
+
+/* ================= BOOK ================= */
+
+
+
+#book{
+
+    width:1080px;
+
+    height:720px;
+
+    transform:scale(.72);
+
+    transform-origin:center center;
+
+    position:relative;
+
+    filter:
+    drop-shadow(0 10px 20px rgba(0,0,0,.25))
+    drop-shadow(0 35px 55px rgba(0,0,0,.45));
+
+    cursor:default;
+
+    user-select:none;
+
+}
+
+
+
+
+#book img{
+
+    pointer-events:none;
+
+}
+
+
+
+
+
+/* ================= PAGES ================= */
+
+
+.page{
+
+    position:relative;
+    overflow:hidden;
+    background:#111;
+
+}
+
+.page img{
+
+    display:block;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:fill;
+
+    image-rendering:auto;
+
+}
+.page::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.08) 0%,
+        rgba(255,255,255,.02) 15%,
+        rgba(0,0,0,.03) 50%,
+        rgba(255,255,255,.08) 100%
+    );
+
+    opacity:.65;
+
+}
+
+
+
+
+
+
+
+/* ================= ARROWS ================= */
+
+
+#prev,
+#next{
+
+    position:fixed;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:65px;
+
+    height:65px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#111;
+
+    font-size:32px;
+
+    cursor:pointer;
+
+    z-index:500;
+
+}
+
+
+
+
+
+
+
+#next{
+
+    display:none !important;
+
+}
+
+
+
+
+
+
+
+/* ================= ZOOM ================= */
+
+
+.zoom-panel{
+
+    position:fixed;
+
+    right:35px;
+
+    top:25px;
+
+    height:55px;
+
+    padding:0 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    backdrop-filter:blur(10px);
+
+    z-index:500;
+
+}
+
+
+
+.zoom-panel button{
+
+    width:35px;
+
+    height:35px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#111;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.camera.dragging{
+
+    cursor:grabbing;
+
+}
+/* ================= BOTTOM NAVIGATION ================= */
+
+.bottom-bar{
+
+    position:fixed;
+
+    left:50%;
+    top:25px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    align-items:center;
+    gap:26px;
+
+    padding:10px 24px;
+
+    background:rgba(15,15,18,.72);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:40px;
+
+    z-index:600;
+
+}
+
+.bottom-arrow{
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    font-family:"Times New Roman", serif;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.bottom-arrow:hover{
+
+    opacity:.65;
+
+}
+
+.bottom-bar .counter{
+
+    position:static;
+
+    background:none;
+
+    padding:0;
+
+    border-radius:0;
+
+    backdrop-filter:none;
+
+    font-size:16px;
+
+    letter-spacing:1px;
+
+    color:white;
+
+}
+/* ================= CLOSE MENU ================= */
+
+.close-menu{
+
+    position:absolute;
+
+    top:35px;
+
+    right:30px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    font-size:26px;
+
+    font-family:"Times New Roman", serif;
+
+    cursor:pointer;
+
+    opacity:.75;
+
+    transition:.2s;
+
+}
+
+.close-menu:hover{
+
+    opacity:1;
+
+    transform:scale(1.08);
+
+}
+/* ================= MOBILE VERSION ================= */
+
+@media (max-width: 768px){
+
+    body{
+        background-image:url("images/tablee.jpg");
+        background-size:cover;
+        background-position:center;
+    }
+
+    .viewer{
+        width:100vw;
+        height:100vh;
+        overflow:hidden;
+    }
+
+    #book{
+        width:1080px;
+        height:720px;
+        transform:scale(.45);
+        transform-origin:center center;
+    }
+
+    /* MENU BUTTON */
+
+    .menu-btn{
+        top:15px;
+        left:15px;
+
+        width:48px;
+        height:48px;
+
+        font-size:25px;
+    }
+
+    /* ZOOM */
+
+    .zoom-panel{
+        right:15px;
+        top:15px;
+
+        height:48px;
+        padding:0 12px;
+
+        gap:8px;
+    }
+
+    .zoom-panel button{
+        width:32px;
+        height:32px;
+        font-size:18px;
+    }
+
+    /* BOTTOM NAVIGATION */
+
+    .bottom-bar{
+        bottom:15px;
+
+        gap:18px;
+
+        padding:8px 18px;
+    }
+
+    .bottom-arrow{
+        font-size:24px;
+    }
+
+    .bottom-bar .counter{
+        font-size:14px;
+    }
+
+    /* MENU */
+
+    .menu{
+        width:85vw;
+        max-width:360px;
+
+        left:-100vw;
+
+        padding:90px 25px 25px 25px;
+    }
+
+    .menu.active{
+        left:0;
+    }
+
+    .menu h1{
+        font-size:28px;
+    }
+
+    .subtitle{
+        font-size:15px;
+        margin-top:18px;
+    }
+
+    .menu-line{
+        margin:25px 0;
+    }
+
+    #menu-pages{
+    height:55vh;
+    max-height:55vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding-right:10px;
+}
+
+    /* PREVENT TEXT SELECTION WHILE SWIPING */
+
+    #book,
+    .page,
+    .page img{
+        -webkit-user-select:none;
+        user-select:none;
+        -webkit-touch-callout:none;
+    }
+
+}
+/* =====================================================
+   CONTENTS PAGE
+   ===================================================== */
+
+.contents-page {
+    background: #eee8df !important;
+    color: #171717;
+    overflow: hidden;
+    font-family: "Times New Roman", serif;
+}
+
+.contents-inner {
+    width: 100%;
+    height: 100%;
+    padding: 42px 58px 34px 58px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ================= TOP ================= */
+
+.contents-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: #555;
+}
+
+.contents-line {
+    width: 100%;
+    height: 1px;
+
+    background: #aaa39a;
+
+    margin-top: 11px;
+}
+
+
+/* ================= TITLE ================= */
+
+.contents-page h1 {
+    margin: 27px 0 0 0;
+
+    font-family: "Times New Roman", serif;
+    font-size: 54px;
+    font-weight: normal;
+    line-height: .9;
+    letter-spacing: -1.5px;
+
+    color: #161616;
+}
+
+.contents-subtitle {
+    margin-top: 11px;
+
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    color: #777;
+}
+
+
+/* ================= LIST ================= */
+
+.contents-list {
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 8px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #aaa39a transparent;
+}
+
+
+/* ================= EACH ITEM ================= */
+
+.contents-item {
+    display: flex;
+    align-items: baseline;
+
+    width: 100%;
+
+    padding: 7px 0;
+
+    border-bottom: 1px solid #c8c1b8;
+
+    cursor: pointer;
+
+    transition:
+        padding-left .2s ease,
+        opacity .2s ease;
+}
+
+.contents-item:first-child {
+    border-top: 1px solid #c8c1b8;
+}
+
+
+/* ================= NUMBER ================= */
+
+.contents-number {
+    width: 34px;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+
+    color: #777;
+}
+
+
+/* ================= TITLE ================= */
+
+.contents-title {
+    font-family: "Times New Roman", serif;
+    font-size: 16px;
+    font-weight: normal;
+
+    letter-spacing: .1px;
+
+    color: #171717;
+
+    white-space: nowrap;
+}
+
+
+/* ================= DOTS ================= */
+
+.contents-dots {
+    flex: 1;
+
+    border-bottom: 1px dotted #aaa39a;
+
+    margin: 0 10px 3px 10px;
+}
+
+
+/* ================= ARROW ================= */
+
+.contents-arrow {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+
+    color: #777;
+
+    opacity: .7;
+}
+
+
+/* ================= HOVER ================= */
+
+.contents-item:hover {
+    padding-left: 5px;
+    opacity: .65;
+}
+
+
+/* ================= BOTTOM ================= */
+
+.contents-bottom {
+    display: flex;
+    justify-content: space-between;
+
+    border-top: 1px solid #aaa39a;
+
+    padding-top: 11px;
+
+    font-family: Arial, sans-serif;
+    font-size: 6px;
+    letter-spacing: 2px;
+
+    color: #777;
+
+    flex-shrink: 0;
+}
+
+
+/* ================= NO SELECTION ================= */
+
+.contents-page,
+.contents-page * {
+    user-select: none;
+    -webkit-user-select: none;
+}
+/* =====================================================
+   TEXT WRITING ON MAGAZINE
+   ===================================================== */
+
+.magazine-text {
+    position: absolute;
+
+    z-index: 100;
+
+    min-width: 20px;
+
+    min-height: 24px;
+
+    padding: 0;
+
+    margin: 0;
+
+    color: #111;
+
+    font-family: "Times New Roman", serif;
+
+    font-size: 18px;
+
+    line-height: 1.25;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+    cursor: text;
+
+    user-select: text;
+
+    -webkit-user-select: text;
+}
+
+
+.magazine-text:focus {
+    outline: none;
+
+    background: transparent;
+}
+
+
+.magazine-text::selection {
+    background: rgba(80, 100, 160, 0.18);
+}
+/* =====================================================
+   TEXT PANEL
+   ===================================================== */
+
+.text-panel {
+    position: fixed;
+
+    right: 35px;
+    top: 95px;
+
+    height: 55px;
+
+    padding: 0 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    background: rgba(255,255,255,.15);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(10px);
+
+    z-index: 500;
+}
+
+
+.text-panel button {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #111;
+
+    cursor: pointer;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+}
+
+
+.text-panel button:hover {
+    opacity: .75;
+}
+
+
+#text-size {
+    min-width: 28px;
+
+    text-align: center;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+}
+
+
+#text-color {
+    width: 35px;
+    height: 35px;
+
+    padding: 3px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    cursor: pointer;
+}
