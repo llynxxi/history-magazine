@@ -443,33 +443,45 @@ async function loadMagazine() {
        PAGE FLIP
     ===================================================== */
 
-    pageFlip =
-        new St.PageFlip(
-            book,
-            {
+    const isMobile =
+    window.matchMedia("(max-width: 768px)").matches;
 
-                width: 540,
 
-                height: 720,
+pageFlip =
+    new St.PageFlip(
+        book,
+        {
 
-                size: "fixed",
+            width: 540,
 
-                showCover: true,
+            height: 720,
 
-                usePortrait: false,
+            size: isMobile ? "stretch" : "fixed",
 
-                drawShadow: false,
+            minWidth: 280,
 
-                maxShadowOpacity: 0,
+            maxWidth: 540,
 
-                flippingTime: 450,
+            minHeight: 373,
 
-                mobileScrollSupport: false,
+            maxHeight: 720,
 
-                useMouseEvents: false
+            showCover: true,
 
-            }
-        );
+            usePortrait: isMobile,
+
+            drawShadow: false,
+
+            maxShadowOpacity: 0,
+
+            flippingTime: 450,
+
+            mobileScrollSupport: false,
+
+            useMouseEvents: false
+
+        }
+    );
 
 
     pageFlip.loadFromHTML(
@@ -495,18 +507,26 @@ async function loadMagazine() {
 
     function updateTransform() {
 
+    if (window.matchMedia("(max-width: 768px)").matches) {
+
+        camera.style.transform = "none";
+
+    } else {
+
         camera.style.transform =
-    `translate(${moveX}px, ${moveY + 80}px) scale(${baseScale * zoom})`;
-
-
-        if (zoomValue) {
-
-            zoomValue.textContent =
-                `${Math.round(zoom * 100)}%`;
-
-        }
+            `translate(${moveX}px, ${moveY + 80}px) scale(${baseScale * zoom})`;
 
     }
+
+
+    if (zoomValue) {
+
+        zoomValue.textContent =
+            `${Math.round(zoom * 100)}%`;
+
+    }
+
+}
 
 
     /* =====================================================
