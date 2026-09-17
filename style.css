@@ -632,27 +632,99 @@ body::before{
 
 @media (max-width: 768px){
 
+    html,
+    body{
+        width:100%;
+        height:100%;
+        margin:0;
+        padding:0;
+        overflow:hidden;
+    }
+
     body{
         background-image:url("images/tablee.jpg");
         background-size:cover;
         background-position:center;
     }
 
+
+    /* ================= VIEWER ================= */
+
     .viewer{
-    width:100vw;
-    height:100vh;
-    overflow:hidden;
-    touch-action:pan-y;
-}
+        position:fixed;
+        inset:0;
+
+        width:100vw;
+        height:100vh;
+
+        overflow:hidden;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        touch-action:none;
+    }
+
+
+    /* ================= CAMERA ================= */
+
+    .camera{
+        width:100vw !important;
+        height:100vh !important;
+
+        left:0 !important;
+        top:0 !important;
+
+        transform:none !important;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+
+    /* ================= BOOK ================= */
 
     #book{
-    width:100%;
-    height:100%;
-    transform:none;
-    transform-origin:center center;
-}
+        width:100% !important;
+        height:100% !important;
 
-    /* MENU BUTTON */
+        transform:none !important;
+        transform-origin:center center;
+
+        margin:0 !important;
+    }
+
+
+    /* Убираем центральную декоративную полосу */
+
+    #book::after{
+        display:none !important;
+        content:none !important;
+    }
+
+
+    /* ================= PAGEFLIP ================= */
+
+    .stf__parent{
+        max-width:100vw !important;
+        max-height:100vh !important;
+
+        width:100% !important;
+        height:100% !important;
+
+        margin:0 !important;
+    }
+
+
+    .stf__block{
+        max-width:100vw !important;
+        max-height:100vh !important;
+    }
+
+
+    /* ================= MENU BUTTON ================= */
 
     .menu-btn{
         top:15px;
@@ -662,9 +734,12 @@ body::before{
         height:48px;
 
         font-size:25px;
+
+        z-index:1000;
     }
 
-    /* ZOOM */
+
+    /* ================= ZOOM ================= */
 
     .zoom-panel{
         right:15px;
@@ -674,15 +749,29 @@ body::before{
         padding:0 12px;
 
         gap:8px;
+
+        z-index:1000;
     }
 
     .zoom-panel button{
         width:32px;
         height:32px;
+
         font-size:18px;
     }
 
-    /* BOTTOM NAVIGATION */
+
+    /* ================= TEXT CONTROLS ================= */
+
+    .text-panel{
+        right:15px;
+        top:85px;
+
+        z-index:1000;
+    }
+
+
+    /* ================= BOTTOM NAVIGATION ================= */
 
     .bottom-bar{
         bottom:15px;
@@ -690,6 +779,8 @@ body::before{
         gap:18px;
 
         padding:8px 18px;
+
+        z-index:1000;
     }
 
     .bottom-arrow{
@@ -700,7 +791,8 @@ body::before{
         font-size:14px;
     }
 
-    /* MENU */
+
+    /* ================= MENU ================= */
 
     .menu{
         width:85vw;
@@ -709,6 +801,8 @@ body::before{
         left:-100vw;
 
         padding:90px 25px 25px 25px;
+
+        z-index:2000;
     }
 
     .menu.active{
@@ -729,21 +823,37 @@ body::before{
     }
 
     #menu-pages{
-    height:55vh;
-    max-height:55vh;
-    overflow-y:auto;
-    overflow-x:hidden;
-    padding-right:10px;
-}
+        height:55vh;
+        max-height:55vh;
 
-    /* PREVENT TEXT SELECTION WHILE SWIPING */
+        overflow-y:auto;
+        overflow-x:hidden;
+
+        padding-right:10px;
+    }
+
+
+    /* ================= MOBILE TEXT ================= */
 
     #book,
     .page,
     .page img{
         -webkit-user-select:none;
         user-select:none;
+
         -webkit-touch-callout:none;
+    }
+
+
+    /* ================= PAGE IMAGES ================= */
+
+    .page img{
+        max-width:100%;
+        max-height:100%;
+
+        object-fit:contain;
+
+        display:block;
     }
 
 }
