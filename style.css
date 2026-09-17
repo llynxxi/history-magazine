@@ -631,6 +631,11 @@ body::before{
 /* ================= MOBILE VERSION ================= */
 
 @media (max-width: 768px){
+    /* ================= MOBILE TEXT CONTROLS ================= */
+
+.text-panel{
+    display:none !important;
+}
 
     html,
     body{
@@ -663,7 +668,7 @@ body::before{
         align-items:center;
         justify-content:center;
 
-        touch-action:none;
+        touch-action:pan-y pinch-zoom;
     }
 
 
