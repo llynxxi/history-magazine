@@ -700,6 +700,17 @@ body::before{
 
         margin:0 !important;
     }
+    .zoom-panel{
+    display:none !important;
+}
+
+.text-panel{
+    display:none !important;
+}
+
+.bottom-bar{
+    display:none !important;
+}
 
 
     /* Убираем центральную декоративную полосу */

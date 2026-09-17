@@ -509,7 +509,8 @@ pageFlip =
 
     if (window.matchMedia("(max-width: 768px)").matches) {
 
-        camera.style.transform = "none";
+        camera.style.transform =
+            `scale(${zoom})`;
 
     } else {
 
