@@ -774,14 +774,8 @@ body::before{
     /* ================= BOTTOM NAVIGATION ================= */
 
     .bottom-bar{
-        bottom:15px;
-
-        gap:18px;
-
-        padding:8px 18px;
-
-        z-index:1000;
-    }
+    display:none;
+}
 
     .bottom-arrow{
         font-size:24px;
