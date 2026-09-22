@@ -23,24 +23,6 @@ let currentTextColor =
     localStorage.getItem("magazine-text-color") || "#111111";
 
 
-const zoomValue = document.getElementById("zoom-value");
-const zoomIn = document.getElementById("zoom-in");
-const zoomOut = document.getElementById("zoom-out");
-const zoomReset = document.getElementById("zoom-reset");
-
-const textSmaller =
-    document.getElementById("text-smaller");
-
-const textLarger =
-    document.getElementById("text-larger");
-
-const textSize =
-    document.getElementById("text-size");
-
-const textColor =
-    document.getElementById("text-color");
-
-
 async function loadMagazine() {
 
     const response = await fetch("pages.json?v=2")
@@ -140,84 +122,6 @@ async function loadMagazine() {
             });
 
         }
-
-
-        /* =================================================
-           ONE CLICK = NEW TEXT
-        ================================================= */
-
-        page.addEventListener("click", (e) => {
-
-            /*
-             * Если кликнули по уже существующему тексту —
-             * новый текст не создаём.
-             */
-
-            if (
-                e.target.closest(".magazine-text")
-            ) {
-                activeText =
-                    e.target.closest(".magazine-text");
-
-                updateTextPanel();
-
-                return;
-            }
-
-
-            /*
-             * Если кликнули по Contents —
-             * текст не создаём.
-             */
-
-            if (
-                e.target.closest(".contents-item")
-            ) {
-                return;
-            }
-
-
-            const rect =
-                page.getBoundingClientRect();
-
-
-            /*
-             * Считаем положение относительно
-             * реального размера страницы.
-             *
-             * Благодаря этому текст появляется
-             * именно там, куда нажали,
-             * даже при увеличении.
-             */
-
-            const x =
-                ((e.clientX - rect.left) /
-                    rect.width) * 100;
-
-            const y =
-                ((e.clientY - rect.top) /
-                    rect.height) * 100;
-
-
-            const text =
-                createTextElement(
-                    page,
-                    pageKey,
-                    "",
-                    `${x}%`,
-                    `${y}%`,
-                    currentTextSize,
-                    currentTextColor
-                );
-
-
-            activeText = text;
-
-            updateTextPanel();
-
-            text.focus();
-
-        });
 
 
         /* =================================================
@@ -686,6 +590,88 @@ pageFlip =
         },
         { passive: true }
     );
+    /* =====================================================
+   MOBILE PINCH ZOOM
+===================================================== */
+
+let pinchStartDistance = 0;
+let pinchStartZoom = 1;
+let pinchCenterX = 0;
+let pinchCenterY = 0;
+
+container.addEventListener(
+    "touchstart",
+    (e) => {
+
+        if (e.touches.length !== 2) return;
+
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+
+        pinchStartDistance = Math.hypot(
+            touch2.clientX - touch1.clientX,
+            touch2.clientY - touch1.clientY
+        );
+
+        pinchStartZoom = zoom;
+
+        pinchCenterX =
+            (touch1.clientX + touch2.clientX) / 2;
+
+        pinchCenterY =
+            (touch1.clientY + touch2.clientY) / 2;
+
+    },
+    { passive: true }
+);
+
+
+container.addEventListener(
+    "touchmove",
+    (e) => {
+
+        if (e.touches.length !== 2) return;
+
+        e.preventDefault();
+
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+
+        const currentDistance = Math.hypot(
+            touch2.clientX - touch1.clientX,
+            touch2.clientY - touch1.clientY
+        );
+
+        if (!pinchStartDistance) return;
+
+        const scale =
+            currentDistance / pinchStartDistance;
+
+        zoom =
+            pinchStartZoom * scale;
+
+        zoom = Math.min(
+            Math.max(zoom, 1),
+            4
+        );
+
+        updateTransform();
+
+    },
+    { passive: false }
+);
+
+
+container.addEventListener(
+    "touchend",
+    (e) => {
+
+        if (e.touches.length < 2) {
+            pinchStartDistance = 0;
+        }
+
+    }
+);
 
 
     /* =====================================================

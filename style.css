@@ -668,7 +668,7 @@ body::before{
         align-items:center;
         justify-content:center;
 
-        touch-action:pan-y pinch-zoom;
+        touch-action:none;
     }
 
 
@@ -692,14 +692,13 @@ body::before{
     /* ================= BOOK ================= */
 
     #book{
-        width:100% !important;
-        height:100% !important;
+    width:100% !important;
+    height:100% !important;
 
-        transform:none !important;
-        transform-origin:center center;
+    transform-origin:center center;
 
-        margin:0 !important;
-    }
+    margin:0 !important;
+}
     .zoom-panel{
     display:none !important;
 }
