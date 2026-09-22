@@ -43,7 +43,7 @@ const textColor =
 
 async function loadMagazine() {
 
-    const response = await fetch("pages.json");
+    const response = await fetch("pages.json?v=2")
     const pages = await response.json();
 
     const book =
@@ -1380,3 +1380,22 @@ loadMagazine().catch(
 
     }
 );
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+                console.log("HISTORY & CULTURE: offline mode enabled");
+            })
+            .catch((error) => {
+                console.error(
+                    "Ошибка Service Worker:",
+                    error
+                );
+            });
+
+    });
+
+}
