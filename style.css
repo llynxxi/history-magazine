@@ -1203,3 +1203,19 @@ body::before{
 
     cursor: pointer;
 }
+/* ================= MOBILE READER MODE ================= */
+
+@media (max-width: 768px) {
+
+    /* Никакого редактирования текста */
+    .text-panel,
+    .magazine-text {
+        display: none !important;
+    }
+
+    /* Убираем экранную лупу */
+    .zoom-panel {
+        display: none !important;
+    }
+
+}
