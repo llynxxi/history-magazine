@@ -21,6 +21,15 @@ let currentTextSize =
 
 let currentTextColor =
     localStorage.getItem("magazine-text-color") || "#111111";
+    const zoomValue = null;
+const zoomIn = null;
+const zoomOut = null;
+const zoomReset = null;
+
+const textSmaller = null;
+const textLarger = null;
+const textSize = null;
+const textColor = null;
 
 
 async function loadMagazine() {
