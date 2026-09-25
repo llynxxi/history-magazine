@@ -528,30 +528,6 @@ pageFlip =
     );
 
 
-    /* =====================================================
-       MOBILE SWIPE
-    ===================================================== */
-
-    container.addEventListener(
-        "touchstart",
-        (e) => {
-
-            if (
-                e.touches.length !== 1
-            ) return;
-
-
-            touchStartX =
-                e.touches[0].clientX;
-
-            touchStartY =
-                e.touches[0].clientY;
-
-        },
-        { passive: true }
-    );
-
-
     container.addEventListener(
         "touchend",
         (e) => {
