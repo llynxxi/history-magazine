@@ -21,29 +21,20 @@ let currentTextSize =
 
 let currentTextColor =
     localStorage.getItem("magazine-text-color") || "#111111";
+    const zoomValue = null;
+const zoomIn = null;
+const zoomOut = null;
+const zoomReset = null;
 
-
-const zoomValue = document.getElementById("zoom-value");
-const zoomIn = document.getElementById("zoom-in");
-const zoomOut = document.getElementById("zoom-out");
-const zoomReset = document.getElementById("zoom-reset");
-
-const textSmaller =
-    document.getElementById("text-smaller");
-
-const textLarger =
-    document.getElementById("text-larger");
-
-const textSize =
-    document.getElementById("text-size");
-
-const textColor =
-    document.getElementById("text-color");
+const textSmaller = null;
+const textLarger = null;
+const textSize = null;
+const textColor = null;
 
 
 async function loadMagazine() {
 
-    const response = await fetch("pages.json");
+    const response = await fetch("pages.json?v=2")
     const pages = await response.json();
 
     const book =
@@ -140,84 +131,6 @@ async function loadMagazine() {
             });
 
         }
-
-
-        /* =================================================
-           ONE CLICK = NEW TEXT
-        ================================================= */
-
-        page.addEventListener("click", (e) => {
-
-            /*
-             * Если кликнули по уже существующему тексту —
-             * новый текст не создаём.
-             */
-
-            if (
-                e.target.closest(".magazine-text")
-            ) {
-                activeText =
-                    e.target.closest(".magazine-text");
-
-                updateTextPanel();
-
-                return;
-            }
-
-
-            /*
-             * Если кликнули по Contents —
-             * текст не создаём.
-             */
-
-            if (
-                e.target.closest(".contents-item")
-            ) {
-                return;
-            }
-
-
-            const rect =
-                page.getBoundingClientRect();
-
-
-            /*
-             * Считаем положение относительно
-             * реального размера страницы.
-             *
-             * Благодаря этому текст появляется
-             * именно там, куда нажали,
-             * даже при увеличении.
-             */
-
-            const x =
-                ((e.clientX - rect.left) /
-                    rect.width) * 100;
-
-            const y =
-                ((e.clientY - rect.top) /
-                    rect.height) * 100;
-
-
-            const text =
-                createTextElement(
-                    page,
-                    pageKey,
-                    "",
-                    `${x}%`,
-                    `${y}%`,
-                    currentTextSize,
-                    currentTextColor
-                );
-
-
-            activeText = text;
-
-            updateTextPanel();
-
-            text.focus();
-
-        });
 
 
         /* =================================================
@@ -612,30 +525,6 @@ pageFlip =
                 "grab";
 
         }
-    );
-
-
-    /* =====================================================
-       MOBILE SWIPE
-    ===================================================== */
-
-    container.addEventListener(
-        "touchstart",
-        (e) => {
-
-            if (
-                e.touches.length !== 1
-            ) return;
-
-
-            touchStartX =
-                e.touches[0].clientX;
-
-            touchStartY =
-                e.touches[0].clientY;
-
-        },
-        { passive: true }
     );
 
 
@@ -1476,3 +1365,22 @@ loadMagazine().catch(
 
     }
 );
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+                console.log("HISTORY & CULTURE: offline mode enabled");
+            })
+            .catch((error) => {
+                console.error(
+                    "Ошибка Service Worker:",
+                    error
+                );
+            });
+
+    });
+
+}

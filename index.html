@@ -11,19 +11,30 @@
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#171717">
+
+<link rel="apple-touch-icon" href="images/icon-192.png">
+
 </head>
 
 <body>
 
+<!-- ================= MENU BUTTON ================= -->
+
 <button id="menu-button" class="menu-btn">
-☰
+    ☰
 </button>
+
+
+<!-- ================= MENU ================= -->
 
 <div class="menu">
 
     <h1>
-    HISTORY<br>
-    &amp; CULTURE
+        HISTORY<br>
+        &amp; CULTURE
     </h1>
 
     <button id="close-menu" class="close-menu">
@@ -45,82 +56,77 @@
         </div>
 
         <div class="menu-nav">
+
+            <button id="menu-prev">
+                ←
+            </button>
+
+            <button id="menu-next">
+                →
+            </button>
+
         </div>
 
     </div>
 
 </div>
 
-<div class="zoom-panel">
 
-    <span class="zoom-icon">
-        🔍
-    </span>
-
-    <span id="zoom-value">
-        100%
-    </span>
-
-    <button id="zoom-out">
-        −
-    </button>
-
-    <button id="zoom-in">
-        +
-    </button>
-
-    <button id="zoom-reset">
-        ↺
-    </button>
-
-</div>
-
-<div class="text-panel">
-
-    <button id="text-smaller">
-        A−
-    </button>
-
-    <span id="text-size">
-        18
-    </span>
-
-    <button id="text-larger">
-        A+
-    </button>
-
-    <input
-        type="color"
-        id="text-color"
-        value="#111111"
-    >
-
-</div>
-
-<div class="bottom-bar">
-
-    <button id="bottom-prev" class="bottom-arrow">
-        ❮
-    </button>
-
-    <button id="bottom-next" class="bottom-arrow">
-        ❯
-    </button>
-
-</div>
+<!-- ================= MAGAZINE VIEWER ================= -->
 
 <div class="viewer">
 
-    <div id="book"></div>
+    <div class="camera">
+
+        <div id="book"></div>
+
+    </div>
 
 </div>
 
 
-<button id="next">
-    ❯
+<!-- ================= DESKTOP NAVIGATION ================= -->
+
+<button id="prev" class="page-arrow">
+    ←
 </button>
 
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<button id="next" class="page-arrow">
+    →
+</button>
+
+
+<!-- ================= DESKTOP BOTTOM BAR ================= -->
+
+<div class="bottom-bar">
+
+    <button
+        id="bottom-prev"
+        class="bottom-arrow"
+    >
+        ←
+    </button>
+
+    <div class="counter">
+        HISTORY &amp; CULTURE
+    </div>
+
+    <button
+        id="bottom-next"
+        class="bottom-arrow"
+    >
+        →
+    </button>
+
+</div>
+
+
+<!-- ================= PAGE FLIP LIBRARY ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+
+
+<!-- ================= MAIN SCRIPT ================= -->
 
 <script src="script.js"></script>
 

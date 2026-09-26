@@ -1,0 +1,42 @@
+﻿[
+  {
+    "title": "Cover",
+    "image": "images/coverr.jpg"
+  },
+  {
+    "title": "Древний мир",
+    "image": "images/Древний мир.jpg"
+  },
+  {
+    "title": "Начало цивилизации",
+    "image": "images/Начало цивилизации.jpg"
+  },
+  {
+    "title": "Первые люди",
+    "image": "images/Первые люди.jpg"
+  },
+  {
+    "title": "Неолитическая революция",
+    "image": "images/Неолитическая революция.jpg"
+  },
+  {
+    "title": "Первые города",
+    "image": "images/Первые города.jpg"
+  },
+  {
+    "title": "Месопотамия",
+    "image": "images/Месопотамия.jpg"
+  },
+  {
+    "title": "Древний Египет",
+    "image": "images/Древний Египет.jpg"
+  },
+  {
+    "title": "Древняя Персия",
+    "image": "images/Древняя Персия.jpg"
+  },
+  {
+    "title": "Back Cover",
+    "image": "images/coverrback.jpg"
+  }
+]
