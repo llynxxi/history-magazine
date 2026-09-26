@@ -510,7 +510,7 @@ pageFlip =
     if (window.matchMedia("(max-width: 768px)").matches) {
 
         camera.style.transform =
-            `scale(${zoom})`;
+    `translate(${moveX}px, ${moveY}px) scale(${zoom})`;
 
     } else {
 
@@ -686,6 +686,102 @@ pageFlip =
         },
         { passive: true }
     );
+    /* =====================================================
+   MOBILE PINCH + PAN
+===================================================== */
+
+let pinchStartDistance = 0;
+let pinchStartZoom = 1;
+
+let panStartX = 0;
+let panStartY = 0;
+let panStartMoveX = 0;
+let panStartMoveY = 0;
+
+
+container.addEventListener("touchstart", (e) => {
+
+    if (e.touches.length === 2) {
+
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+
+        pinchStartDistance = Math.hypot(
+            touch2.clientX - touch1.clientX,
+            touch2.clientY - touch1.clientY
+        );
+
+        pinchStartZoom = zoom;
+
+        return;
+    }
+
+    if (e.touches.length === 1 && zoom > 1) {
+
+        panStartX = e.touches[0].clientX;
+        panStartY = e.touches[0].clientY;
+
+        panStartMoveX = moveX;
+        panStartMoveY = moveY;
+    }
+
+}, { passive: true });
+
+
+container.addEventListener("touchmove", (e) => {
+
+    if (e.touches.length === 2) {
+
+        e.preventDefault();
+
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+
+        const currentDistance = Math.hypot(
+            touch2.clientX - touch1.clientX,
+            touch2.clientY - touch1.clientY
+        );
+
+        if (!pinchStartDistance) return;
+
+        zoom =
+            pinchStartZoom *
+            (currentDistance / pinchStartDistance);
+
+        zoom = Math.min(
+            Math.max(zoom, 1),
+            4
+        );
+
+        updateTransform();
+
+        return;
+    }
+
+
+    if (e.touches.length === 1 && zoom > 1) {
+
+        e.preventDefault();
+
+        moveX =
+            panStartMoveX +
+            (e.touches[0].clientX - panStartX);
+
+        moveY =
+            panStartMoveY +
+            (e.touches[0].clientY - panStartY);
+
+        updateTransform();
+    }
+
+}, { passive: false });
+
+
+container.addEventListener("touchend", () => {
+
+    pinchStartDistance = 0;
+
+});
 
 
     /* =====================================================
